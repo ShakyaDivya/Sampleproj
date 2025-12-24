@@ -103,15 +103,18 @@ server <- function(input, output, session) {
     }
   })
   
+
  
   if (!dir.exists("www")) dir.create("www")
   
-  
+
+ 
+  if (!dir.exists("www")) dir.create("www")
   
   #ui sidebar pop changed
   output$sidebarpanel <- renderUI({
     
-  
+
     sidebarLayout(
       sidebarPanel(width = 2, 
                    div(id = "sidebarPanelDiv",
@@ -136,8 +139,7 @@ server <- function(input, output, session) {
                                      "Select District (Select Province First)",
                                      choices=c("All"),
                                      selected = "All")),  # Start with no choices
-                       # Third select input that will be updated based on the first input
-                       
+
                        conditionalPanel(
                          condition = "input.dist !='All'", 
                          selectInput("muni",
@@ -183,6 +185,7 @@ server <- function(input, output, session) {
       mainPanel(
         navbarPage("RESULTS",id = "tabselected",
                    
+
                    tabPanel("Population Change",
                             fluidRow(
                               column(8,
@@ -231,6 +234,7 @@ server <- function(input, output, session) {
       )#mainPanel
     )#sidebarLayout
   })
+
   #input 
   {
     
@@ -297,6 +301,7 @@ server <- function(input, output, session) {
       xx
     })
     
+
     seldist <- reactive({ 
       selecteddist = prov.dist.list[provname==iprov(),dname]
       selecteddist
@@ -359,6 +364,13 @@ server <- function(input, output, session) {
         # print(dist.num)
         if(T){# dist.num="10000"
           
+
+          #choose scneario 
+          
+          #n21 #district
+          
+          #n41 #palika
+
           iscen.code <- c("n22","n23","n24")[grep(i,scens)]
           
           ifoldername <- grep(iscen.code,dir("../data/output",full.names = T),value = T)
